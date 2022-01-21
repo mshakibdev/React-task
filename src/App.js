@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Fragment} from "react";
+import Container from "react-bootstrap/Container";
+import Card from "react-bootstrap/Card";
+import "./App.css";
+import Home from "./components/Home";
+import NavBar from "./components/Layout/NavBar";
+import MyForm from "./components/MyForm";
+import Form from "./components/Form";
+import Info from "./components/Info/Info";
+import TodoForm from "./Todo/TodoForm";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+	<Fragment>
+		<NavBar />
+		<Container className="">
+			<TodoForm />
+		</Container>
+	</Fragment>
+);
 
 export default App;

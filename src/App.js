@@ -7,13 +7,17 @@ import NavBar from "./components/Layout/NavBar";
 import MyForm from "./components/MyForm";
 import Form from "./components/Form";
 import Info from "./components/Info/Info";
-import TodoForm from "./Todo/TodoForm";
+import Todo from "./Todo/Todo";
+import TodoProviders from "./store/TodoProviders";
+import MyTodo from "./Todo/MyTodo";
 
 const App = () => (
 	<Fragment>
 		<NavBar />
-		<Container className="">
-			<TodoForm />
+		<Container>
+			<TodoProviders>
+				<MyTodo />
+			</TodoProviders>
 		</Container>
 	</Fragment>
 );

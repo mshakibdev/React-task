@@ -16,20 +16,18 @@ function Home() {
 						roundedCircle={true}
 					/>
 
-					<div>
-						<h6>Md.Saiful Islam Khan </h6>
-						<p>Senior Software Engineer</p>
+					<div className="ms-4">
+						<h6>Md.Shakib Hassan </h6>
+						<p>Frontend Developer</p>
 					</div>
 				</Col>
 				<Col>
 					<div>
 						<h2>About My self</h2>
 						<p>
-							Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-							been the industry's standard dummy text ever since the 1500s, when an unknown printer took
-							a galley of type and scrambled it to make a type specimen book. It has survived not only
-							five centuries, but also the leap into electronic typesetting, remaining essentially
-							unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+							I am a Frontend Developer who enjoys exploring and solving problems in Front-end arena.
+							Because my curiosity makes me want to know more about the ins and outs of the tools I am
+							working with, I also like to explore new tech and skill and try to play with them.
 						</p>
 					</div>
 				</Col>

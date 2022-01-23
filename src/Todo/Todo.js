@@ -5,6 +5,7 @@ import TodoContext from "./../store/TodoContext";
 
 function MyTodo() {
 	const contextValue = useContext(TodoContext);
+	
 
 	const addTodoButtonHandler = () => {
 		contextValue.todoAddDispatch();

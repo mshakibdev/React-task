@@ -9,7 +9,6 @@ const defaultTodoState = {
 
 const todoReducer = (state, action) => {
 	if (action.type === "ADD-TODO") {
-
 		action.newTodo = {
 			id: Math.random().toString(16).slice(2),
 			title: "New Task tilte",
@@ -18,7 +17,7 @@ const todoReducer = (state, action) => {
 			complete: false,
 		};
 
-		const newState = {allTodo: [...state.allTodo, action.newTodo], todo: {}};
+		const newState = {allTodo: [...state.allTodo, action.newTodo], todo: action.newTodo};
 		return newState;
 	}
 	if (action.type === "REMOVE-TODO") {
@@ -29,9 +28,9 @@ const todoReducer = (state, action) => {
 	}
 	if (action.type === "SELECT-TODO") {
 		const clickedTodo = action.selectedTodo;
-	
+
 		const newState = {allTodo: [...state.allTodo], todo: {clickedTodo}};
-		localStorage.setItem("selectedId",action?.selectedTodo?.id);
+		localStorage.setItem("selectedId", action?.selectedTodo?.id);
 		localStorage.setItem("selectedTodo", action?.selectedTodo);
 
 		return newState;
@@ -46,9 +45,9 @@ const todoReducer = (state, action) => {
 		updatedTodo = {
 			id: action.updatedTodo.id,
 			title: action.updatedTodo,
-			description: 'action.updatedTodo.description',
-			author: 'action.updatedTodo.author',
-			complete: 'action.updatedTodo.complete',
+			description: "action.updatedTodo.description",
+			author: "action.updatedTodo.author",
+			complete: "action.updatedTodo.complete",
 		};
 		updatedTodoList[index] = updatedTodo;
 

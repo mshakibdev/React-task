@@ -7,7 +7,7 @@ function TodoList(props) {
 
 	const [clicked, setClicked] = useState(false);
 	// const selectedTodo = localStorage.getItem("selectedTodo");
-	
+
 	const title = contextValue?.todo?.todo?.updatedTodo?.title;
 	const description = contextValue?.todo?.todo?.updatedTodo?.description;
 	const author = contextValue?.todo?.todo?.updatedTodo?.author;
@@ -33,16 +33,16 @@ function TodoList(props) {
 		contextValue.todoSelectDispatch(todo);
 	};
 
-	const cssClass = clicked ? "border bg-white p-4 border border-success " : "border bg-white p-4 ";
+	const cssClass = clicked ? " m-3 border bg-white p-4 border border-success " : "border bg-white p-4 ";
 
 	const defaultTodo = (
-		<div className={cssClass}>
-			<div className='mb-4 ' onClick={todoSelectHandler}>
+		<div>
+			<div className='mb-4 '>
 				<Badge onClick={removeTodoHandler} bg='danger'>
 					Delete
 				</Badge>
 
-				<h6>{title }</h6>
+				<h6>{title ? title : props.todo.title}</h6>
 				<p>{description ? description : props.todo.description}</p>
 				<p> Author: {author ? author : props.todo.author}</p>
 
@@ -55,7 +55,7 @@ function TodoList(props) {
 	);
 	return (
 		<>
-			<div className='m-3 '>
+			<div className={cssClass} onClick={todoSelectHandler}>
 				{defaultTodo}
 
 				{/* <div className='m-5 bg-white px-5 py-2'>

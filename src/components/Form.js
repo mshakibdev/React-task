@@ -62,7 +62,7 @@ const Form = () => {
 	return (
 		
 		<form onSubmit={submitHandler} className=' g-9 '>
-			<div className='col-md-6 mx-auto'>
+			<div className='col-md-6 mx-auto mt-5'>
 				<label htmlFor='mail' className='form-label'>
 					Email
 				</label>
@@ -79,7 +79,7 @@ const Form = () => {
 
 			{checkOptions.map((eachCheckbox) => (
 				<div key={eachCheckbox.id} className='form-check mx-auto col-md-6  mt-3'>
-					<>
+					<div >
 						<input
 							className='form-check-input'
 							type='checkbox'
@@ -91,7 +91,7 @@ const Form = () => {
 						<label className='form-check-label' htmlFor={eachCheckbox.id}>
 							{`${eachCheckbox.topic}`}
 						</label>
-					</>
+					</div>
 				</div>
 			))}
 			{!validForm && !skillIsValid && (
@@ -101,7 +101,7 @@ const Form = () => {
 			)}
 
 			{radioOptions.map((eachRadioBox) => (
-				<div key={eachRadioBox.id} className='form-check col-md-6 mx-auto mt-3 '>
+				<div key={eachRadioBox.id} className='form-check  col-md-6 mx-auto mt-3 '>
 					<input
 						className='form-check-input'
 						type='radio'

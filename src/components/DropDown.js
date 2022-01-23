@@ -96,7 +96,7 @@ const content = {
 	},
 };
 function DropDown() {
-	const [activeId, SetactiveId] = useState("");
+	const [activeId, setActiveId] = useState("");
 
 	const CheckShouldVisible = (id) => {
 		// id ta active idr parent ki na
@@ -107,13 +107,11 @@ function DropDown() {
 		return (
 			<div key={singleContent.id}>
 				{content.rootId !== singleContent.id && (
-					<div className='nav flex-column' onClick={() => SetactiveId(singleContent.id)}>
-						{singleContent.data.name}
-					</div>
+					<div onClick={() => setActiveId(singleContent.id)}>{singleContent.data.name}</div>
 				)}
 
 				{singleContent.id === content.rootId || (singleContent.hasChildren && CheckShouldVisible(singleContent.id)) ? (
-					<div className='nav-item' style={{marginLeft: 20}}>
+					<div style={{marginLeft: 20}}>
 						{singleContent.children.map((singleId) => {
 							return SinglelistUi(content.items[singleId]);
 						})}
@@ -125,9 +123,7 @@ function DropDown() {
 
 	return (
 		<>
-			<li>
-				{activeId} {SinglelistUi(content.items[content.rootId])}
-			</li>
+			<li>{SinglelistUi(content.items[content.rootId])}</li>
 		</>
 	);
 }

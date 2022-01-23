@@ -1,48 +1,50 @@
 import Badge from "react-bootstrap/Badge";
-import React, {useContext} from "react";
-import TodoForm from "./TodoForm";
-
+import React, {useContext, useState} from "react";
 import TodoContext from "./../store/TodoContext";
 
 function TodoList(props) {
 	const contextValue = useContext(TodoContext);
-	const newTodo = {
+
+	const [clicked, setClicked] = useState(false);
+	// const selectedTodo = localStorage.getItem("selectedTodo");
+	
+	const title = contextValue?.todo?.todo?.updatedTodo?.title;
+	const description = contextValue?.todo?.todo?.updatedTodo?.description;
+	const author = contextValue?.todo?.todo?.updatedTodo?.author;
+	const complete = contextValue?.todo?.todo?.updatedTodo?.complete;
+	const todo = {
+		id: props.id,
 		title: props.todo.title,
 		description: props.todo.description,
 		author: props.todo.author,
 		complete: props.todo.complete,
 	};
 	const addTodoHandler = () => {
-		contextValue.todoAddDispatch(newTodo);
+		contextValue.todoAddDispatch(todo);
+		contextValue.todoSelectDispatch(todo);
 	};
 
 	const removeTodoHandler = () => {
-		// console.log("removeId", newTodo.id);
 		contextValue.todoRemoveDispatch(props.id);
 	};
 
-
 	const todoSelectHandler = () => {
-		const selectedTodo = {
-			id: props.id,
-			title: props.todo.title,
-			description: props.todo.description,
-			author: props.todo.author,
-			complete: props.todo.complete,
-		};
-		contextValue.todoSelectDispatch(selectedTodo);
+		setClicked(true);
+		contextValue.todoSelectDispatch(todo);
 	};
 
+	const cssClass = clicked ? "border bg-white p-4 border border-success " : "border bg-white p-4 ";
+
 	const defaultTodo = (
-		<div className='border bg-white p-4'>
+		<div className={cssClass}>
 			<div className='mb-4 ' onClick={todoSelectHandler}>
 				<Badge onClick={removeTodoHandler} bg='danger'>
 					Delete
 				</Badge>
 
-				<h6>{props.todo.title}</h6>
-				<p>{props.todo.description}</p>
-				<p> Author: {props.todo.author}</p>
+				<h6>{title }</h6>
+				<p>{description ? description : props.todo.description}</p>
+				<p> Author: {author ? author : props.todo.author}</p>
 
 				<Badge bg='danger'>Completed</Badge>
 			</div>

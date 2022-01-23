@@ -4,39 +4,55 @@ import TodoContext from "./TodoContext";
 
 const defaultTodoState = {
 	allTodo: [],
-	todo: {title: "", description: "", author: "", complete: false},
+	todo: {id: "", title: "", description: "", author: "", complete: false},
 };
 
 const todoReducer = (state, action) => {
 	if (action.type === "ADD-TODO") {
-		console.log("add-state", state.allTodo);
 
-		let id = Math.random().toString(16).slice(2);
-		if (state.allTodo.length === 0) {
-			action.newTodo = {
-				title: "New Task tilte",
-				description: "title Description",
-				author: "Shakib",
-				complete: false,
-			};
-		}
-		action.newTodo = {...action.newTodo, id};
+		action.newTodo = {
+			id: Math.random().toString(16).slice(2),
+			title: "New Task tilte",
+			description: "title Description",
+			author: "Shakib",
+			complete: false,
+		};
+
 		const newState = {allTodo: [...state.allTodo, action.newTodo], todo: {}};
 		return newState;
 	}
 	if (action.type === "REMOVE-TODO") {
-		console.log("re", action);
 		const filteredState = state.allTodo.filter((stateTodo) => stateTodo.id !== action.id);
 		const newState = {allTodo: filteredState, todo: {}};
 
 		return newState;
 	}
 	if (action.type === "SELECT-TODO") {
-		console.log("selected id", action.id);
-		console.log("selected-action", action);
-
-		const clickedTodo = action;
+		const clickedTodo = action.selectedTodo;
+	
 		const newState = {allTodo: [...state.allTodo], todo: {clickedTodo}};
+		localStorage.setItem("selectedId",action?.selectedTodo?.id);
+		localStorage.setItem("selectedTodo", action?.selectedTodo);
+
+		return newState;
+	}
+	if (action.type === "UPDATE-TODO") {
+		let updatedTodo;
+		const updatedTodoList = [...state.allTodo];
+		const index = state.allTodo.findIndex((todo) => todo.id === action.updatedTodo.id);
+
+		updatedTodo = updatedTodoList[index];
+
+		updatedTodo = {
+			id: action.updatedTodo.id,
+			title: action.updatedTodo,
+			description: 'action.updatedTodo.description',
+			author: 'action.updatedTodo.author',
+			complete: 'action.updatedTodo.complete',
+		};
+		updatedTodoList[index] = updatedTodo;
+
+		const newState = {allTodo: [...state.allTodo], todo: {updatedTodo}};
 
 		return newState;
 	}
@@ -58,11 +74,16 @@ function TodoProviders(props) {
 		const action = {type: "SELECT-TODO", selectedTodo};
 		dispatchTodoAction(action);
 	};
+	const updateTodo = (updatedTodo) => {
+		const action = {type: "UPDATE-TODO", updatedTodo};
+		dispatchTodoAction(action);
+	};
 	const contextValue = {
 		todo: todoState,
 		todoAddDispatch: addTodo,
 		todoRemoveDispatch: removeTodo,
 		todoSelectDispatch: selectTodo,
+		todoUpdateDispatch: updateTodo,
 	};
 	return <TodoContext.Provider value={contextValue}>{props.children}</TodoContext.Provider>;
 }

@@ -2,21 +2,31 @@ import React, {Fragment} from "react";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import {NavLink} from "react-router-dom";
+
 function NavBar() {
 	return (
-		<Fragment>
-			<Navbar bg='secondary' variant='dark'>
-				<Container>
-					<Nav className='justify-content-md-center'>
-						<Nav.Link style={{color: "white"}}>Home</Nav.Link>
-						<Nav.Link style={{color: "white"}}>My Form</Nav.Link>
-						<Nav.Link style={{color: "white"}}>Info</Nav.Link>
-						<Nav.Link style={{color: "white"}}>Todo</Nav.Link>
-						<Nav.Link style={{color: "white"}}>DropDown</Nav.Link>
-					</Nav>
-				</Container>
-			</Navbar>
-		</Fragment>
+		<Navbar bg='secondary' variant='dark'>
+			<Container>
+				<Nav className='justify-content-md-center'>
+					<NavLink className='nav-link ' to='/home'>
+						Home
+					</NavLink>
+					<NavLink to='/form' className='nav-link'>
+						My Form
+					</NavLink>
+					<NavLink to='/info' className='nav-link'>
+						Info
+					</NavLink>
+					<NavLink to='/todo' className='nav-link'>
+						Todo
+					</NavLink>
+					<NavLink to='/menu' className='nav-link'>
+						DropDown
+					</NavLink>
+				</Nav>
+			</Container>
+		</Navbar>
 	);
 }
 

@@ -125,36 +125,9 @@ function DropDown() {
 
 	return (
 		<>
-			<li >
+			<li>
 				{activeId} {SinglelistUi(content.items[content.rootId])}
 			</li>
-			<div className='dropdown'>
-				<button
-					className='btn btn-primary dropdown-toggle'
-					type='button'
-					id='dropdownMenuButton'
-					data-bs-toggle='dropdown'
-					aria-expanded='false'>
-					Dropdown
-				</button>
-				<ul className='dropdown-menu dropdown-menu-lg-start' aria-labelledby='dropdownMenuButton'>
-					<li>
-						<a className='dropdown-item' href='#'>
-							Option 1
-						</a>
-					</li>
-					<li>
-						<a className='dropdown-item' href='#'>
-							Option 2
-						</a>
-					</li>
-					<li>
-						<a className='dropdown-item' href='#'>
-							Option 3
-						</a>
-					</li>
-				</ul>
-			</div>
 		</>
 	);
 }

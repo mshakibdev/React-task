@@ -60,7 +60,6 @@ const Form = () => {
 	};
 
 	return (
-		
 		<form onSubmit={submitHandler} className=' g-9 '>
 			<div className='col-md-6 mx-auto mt-5'>
 				<label htmlFor='mail' className='form-label'>
@@ -77,44 +76,48 @@ const Form = () => {
 				{!validForm && !nameIsValid && <div style={{color: "#b40e0e"}}>Name field is required!</div>}
 			</div>
 
-			{checkOptions.map((eachCheckbox) => (
-				<div key={eachCheckbox.id} className='form-check mx-auto col-md-6  mt-3'>
-					<div >
-						<input
-							className='form-check-input'
-							type='checkbox'
-							value={`${eachCheckbox.value}`}
-							id={eachCheckbox.id}
-							name={`${eachCheckbox.topic}`}
-							onChange={checkBoxHandler}
-						/>
-						<label className='form-check-label' htmlFor={eachCheckbox.id}>
-							{`${eachCheckbox.topic}`}
-						</label>
-					</div>
-				</div>
-			))}
+			<div className='form-check mx-auto col-md-6  mt-3 d-flex '>
+				{checkOptions.map((eachCheckbox) => (
+					<>
+						<div key={eachCheckbox.id} className='p-3'>
+							<input
+								className='form-check-input'
+								type='checkbox'
+								value={`${eachCheckbox.value}`}
+								id={eachCheckbox.id}
+								name={`${eachCheckbox.topic}`}
+								onChange={checkBoxHandler}
+							/>
+							<label className='form-check-label' htmlFor={eachCheckbox.id}>
+								{`${eachCheckbox.topic}`}
+							</label>
+						</div>
+					</>
+				))}
+			</div>
+
 			{!validForm && !skillIsValid && (
 				<div className='col-md-6 mx-auto mt-3' style={{color: "#b40e0e"}}>
 					Skills field is required!
 				</div>
 			)}
-
-			{radioOptions.map((eachRadioBox) => (
-				<div key={eachRadioBox.id} className='form-check  col-md-6 mx-auto mt-3 '>
-					<input
-						className='form-check-input'
-						type='radio'
-						name='inlineRadioOptions'
-						id={eachRadioBox.id}
-						value={`${eachRadioBox.gender}`}
-						onChange={genderHandler}
-					/>
-					<label className='form-check-label' htmlFor={eachRadioBox.id}>
-						{`${eachRadioBox.gender}`}
-					</label>
-				</div>
-			))}
+			<div className='form-check mx-auto col-md-6  mt-3 d-flex '>
+				{radioOptions.map((eachRadioBox) => (
+					<div key={eachRadioBox.id} className='form-check p-9'>
+						<input
+							className='form-check-input'
+							type='radio'
+							name='inlineRadioOptions'
+							id={eachRadioBox.id}
+							value={`${eachRadioBox.gender}`}
+							onChange={genderHandler}
+						/>
+						<label className='form-check-label' htmlFor={eachRadioBox.id}>
+							{`${eachRadioBox.gender}`}
+						</label>
+					</div>
+				))}
+			</div>
 
 			<div className='col-md-6 mx-auto mt-3'>
 				<button className='btn btn-primary '>Submit</button>

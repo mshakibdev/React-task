@@ -33,11 +33,11 @@ function TodoList(props) {
 		contextValue.todoSelectDispatch(todo);
 	};
 
-	const cssClass = clicked ? " m-3 border bg-white p-4 border border-success " : "border bg-white p-4 ";
+	const cssClass = clicked ? " m-3 border bg-white p-4 border border-success " : "border bg-white p-4 m-2 ";
 
 	const defaultTodo = (
-		<div>
-			<div className='mb-4 '>
+		<div className={cssClass}>
+			<div className='mb-4' >
 				<Badge onClick={removeTodoHandler} bg='danger'>
 					Delete
 				</Badge>
@@ -55,7 +55,7 @@ function TodoList(props) {
 	);
 	return (
 		<>
-			<div className={cssClass} onClick={todoSelectHandler}>
+			<div>
 				{defaultTodo}
 
 				{/* <div className='m-5 bg-white px-5 py-2'>

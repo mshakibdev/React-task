@@ -42,15 +42,13 @@ function TodoList(props) {
 	const defaultTodo = (
 		<div className={cssClass} onClick={todoSelectHandler}>
 			<div className='mb-4'>
-				<Badge onClick={removeTodoHandler} bg='danger'>
-					Delete
-				</Badge>
+				<img  onClick={removeTodoHandler} src='https://img.icons8.com/small/24/000000/filled-trash.png' />
 
 				<h6>{title ? title : props.todo.title}</h6>
 				<p>{description ? description : props.todo.description}</p>
 				<p> Author: {author ? author : props.todo.author}</p>
 
-				<Badge bg={!completeCSS ? "success" : "danger" }>
+				<Badge bg={!completeCSS ? "success" : "danger"}>
 					<p> Complete: </p>
 				</Badge>
 			</div>

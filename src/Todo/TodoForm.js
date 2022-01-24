@@ -70,7 +70,7 @@ function TodoForm(props) {
 	const confirm = contextValue.todo.status;
 
 	return {confirm} ? (
-		<form className=' bg-white p-2 sticky-top m-3'>
+		<form className=' bg-white p-2  m-3 border'>
 			<div className='mb-3'>
 				<label htmlFor='title' className='htmlF-label'>
 					Title

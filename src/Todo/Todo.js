@@ -5,13 +5,21 @@ import TodoContext from "./../store/TodoContext";
 
 function MyTodo() {
 	const contextValue = useContext(TodoContext);
-	
 
 	const addTodoButtonHandler = () => {
-	
+		// const newTodo = {
+		// 	id: Math.random().toString(16).slice(2),
+		// 	title: "New Task tilte",
+		// 	description: "title Description",
+		// 	author: "Shakib",
+		// 	complete: false,
+		// };
+
 		contextValue.todoAddDispatch();
 	};
-
+	const selectedId = contextValue?.todo?.todo?.id;
+	// const confirm = selectedId === props.id;
+	console.log("cv", contextValue.todo.status);
 	return (
 		<div className='d-flex'>
 			<div className='container bg-light d-flex  mt-5 border  justify-content-between'>
@@ -30,7 +38,9 @@ function MyTodo() {
 				)}
 			</div>
 			<div className='col-md-4 m-auto sticky-top'>
-				<TodoForm />
+				{contextValue.todo.allTodo.map((eachTodo, index) => (
+					<TodoForm todo={eachTodo} key={index} id={eachTodo.id} />
+				))}
 			</div>
 		</div>
 	);

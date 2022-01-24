@@ -27,14 +27,12 @@ const todoReducer = (state, action) => {
 		return newState;
 	}
 	if (action.type === "SELECT-TODO") {
-		let updatedTodo;
-		const updatedTodoList = [...state.allTodo];
-		const index = state.allTodo.findIndex((todo) => todo.id === action.id);
+		const clickedTodo = action.selectedTodo;
 
-		updatedTodo = updatedTodoList[index];
+		const newState = {allTodo: [...state.allTodo], todo: {clickedTodo}};
+		localStorage.setItem("selectedId", action?.selectedTodo?.id);
+		localStorage.setItem("selectedTodo", action?.selectedTodo);
 
-		const newState = {allTodo: [...state.allTodo], todo: updatedTodo,status: action.status};
-		console.log("newStatw", newState);
 		return newState;
 	}
 	if (action.type === "UPDATE-TODO") {
@@ -43,17 +41,17 @@ const todoReducer = (state, action) => {
 		const index = state.allTodo.findIndex((todo) => todo.id === action.updatedTodo.id);
 
 		updatedTodo = updatedTodoList[index];
-		console.log("action----", action);
+
 		updatedTodo = {
 			id: action.updatedTodo.id,
-			title: action.updatedTodo.title,
-			description: action.updatedTodo.description,
-			author: action.updatedTodo.author,
-			complete: action.updatedTodo.complete,
+			title: action.updatedTodo,
+			description: "action.updatedTodo.description",
+			author: "action.updatedTodo.author",
+			complete: "action.updatedTodo.complete",
 		};
 		updatedTodoList[index] = updatedTodo;
-		console.log("List", updatedTodoList);
-		const newState = {allTodo: [...updatedTodoList]};
+
+		const newState = {allTodo: [...state.allTodo], todo: {updatedTodo}};
 
 		return newState;
 	}
@@ -71,8 +69,8 @@ function TodoProviders(props) {
 		const action = {type: "REMOVE-TODO", id};
 		dispatchTodoAction(action);
 	};
-	const selectTodo = (id,status) => {
-		const action = {type: "SELECT-TODO", id,status};
+	const selectTodo = (selectedTodo) => {
+		const action = {type: "SELECT-TODO", selectedTodo};
 		dispatchTodoAction(action);
 	};
 	const updateTodo = (updatedTodo) => {

@@ -1,44 +1,85 @@
-import React, {useContext,useState} from "react";
+import React, {useContext, useState, useEffect} from "react";
 import TodoContext from "./../store/TodoContext";
 
-function TodoForm() {
+function TodoForm(props) {
 	const contextValue = useContext(TodoContext);
-	const selectedTodo = contextValue?.todo?.todo?.clickedTodo;
-	const [description, setDescription] = useState(selectedTodo?.description);
-	const [title, setTitle] = useState("");
+	console.log("FORM--", contextValue?.todo?.todo?.id);
+	const selectedId = contextValue?.todo?.todo?.id;
+	// const selectedTodo = contextValue?.todo?.todo?.clickedTodo;
+	// const [description, setDescription] = useState(selectedTodo?.description);
 
+	const [title, setTitle] = useState(props.todo.title);
+	const [description, setDescription] = useState(props.todo.description);
+	const [author, setAuthor] = useState(props.todo.author);
+	const [complete, setComplete] = useState(props.todo.complete);
+	// const [title, setTitle] = useState("");
 
-	const inputChangeHandler = (e) => {
-		setTitle({title: e.target.value}, () => {
-			contextValue.todoUpdateDispatch(title);
-		});
+	// contextValue.todoUpdateDispatch(updatedTodo);
+
+	const titleChangeHandler = (e) => {
+		const title = e.target.value;
+		setTitle(title);
+		const updatedTodo = {
+			id: props.id,
+			title: title,
+			description: description,
+			author: author,
+			complete: complete,
+		};
+		contextValue.todoUpdateDispatch(updatedTodo);
 	};
-	const ChangeHandler = (e) => {
-		setDescription(e.target.value);
+	const descriptionChangeHandler = (e) => {
+		const description = e.target.value;
+		setDescription(description);
+		const updatedTodo = {
+			id: props.id,
+			title: title,
+			description: description,
+			author: author,
+			complete: complete,
+		};
+		contextValue.todoUpdateDispatch(updatedTodo);
 	};
+	const authorChangeHandler = (e) => {
+		const author = e.target.value;
+		setAuthor(author);
+		const updatedTodo = {
+			id: props.id,
+			title: title,
+			description: description,
+			author: author,
+			complete: complete,
+		};
+		contextValue.todoUpdateDispatch(updatedTodo);
+	};
+	const completeChangeHandler = (e) => {
+		const complete = e.target.value;
+		setComplete(complete);
+		const updatedTodo = {
+			id: props.id,
+			title: title,
+			description: description,
+			author: author,
+			complete: complete,
+		};
+		contextValue.todoUpdateDispatch(updatedTodo);
+	};
+	const confirm = contextValue.todo.status;
 
-	return (
+	return {confirm} ? (
 		<form className=' bg-white p-2 sticky-top m-3'>
 			<div className='mb-3'>
 				<label htmlFor='title' className='htmlF-label'>
 					Title
 				</label>
-				<input
-					value={selectedTodo?.title}
-					type='text'
-					name='title'
-					className='form-control'
-					id='titleID'
-					onChange={inputChangeHandler}
-				/>
+				<input value={title} type='text' name='title' className='form-control' id='titleID' onChange={titleChangeHandler} />
 			</div>
 			<div className='mb-3'>
 				<label htmlFor='description' className='form-label'>
 					Description
 				</label>
 				<textarea
-					onChange={ChangeHandler}
-					defaultValue={selectedTodo?.description}
+					onChange={descriptionChangeHandler}
 					value={description}
 					className='form-control'
 					id='description'
@@ -49,14 +90,7 @@ function TodoForm() {
 				<label htmlFor='author' className='htmlF-label'>
 					Author
 				</label>
-				<input
-					type='text'
-					// onChange={inputChangeHandler}
-					value={selectedTodo?.author}
-					className='form-control'
-					id='author'
-					name='author'
-				/>
+				<input type='text' onChange={authorChangeHandler} value={author} className='form-control' id='author' name='author' />
 			</div>
 			<div className='mb-3 form-check'>
 				<input
@@ -64,14 +98,16 @@ function TodoForm() {
 					className='form-check-input'
 					id='complete'
 					name='complete'
-					value={selectedTodo?.complete}
-					// onChange={inputChangeHandler}
+					value={`${complete}`}
+					onChange={completeChangeHandler}
 				/>
 				<label className='form-check-label' htmlFor='exampleCheck1'>
 					Complete
 				</label>
 			</div>
 		</form>
+	) : (
+		""
 	);
 }
 

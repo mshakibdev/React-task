@@ -4,12 +4,11 @@ import TodoContext from "./../store/TodoContext";
 
 function TodoList(props) {
 	const contextValue = useContext(TodoContext);
-	const [title, setTitle] = useState("");
 
 	const [clicked, setClicked] = useState(false);
 	// const selectedTodo = localStorage.getItem("selectedTodo");
 
-	// const title = contextValue?.todo?.todo?.updatedTodo?.title;
+	const title = contextValue?.todo?.todo?.updatedTodo?.title;
 	const description = contextValue?.todo?.todo?.updatedTodo?.description;
 	const author = contextValue?.todo?.todo?.updatedTodo?.author;
 	const complete = contextValue?.todo?.todo?.updatedTodo?.complete;
@@ -21,7 +20,6 @@ function TodoList(props) {
 		complete: props.todo.complete,
 	};
 	const addTodoHandler = () => {
-		setTitle("New Task tilte");
 		contextValue.todoAddDispatch(todo);
 		contextValue.todoSelectDispatch(todo);
 	};
@@ -32,15 +30,13 @@ function TodoList(props) {
 
 	const todoSelectHandler = () => {
 		setClicked(true);
-		const id = props.id;
-		const showForm = clicked;
-		contextValue.todoSelectDispatch(id, showForm);
+		contextValue.todoSelectDispatch(todo);
 	};
 
 	const cssClass = clicked ? " m-3 border bg-white p-4 border border-success " : "border bg-white p-4 m-2 ";
 
 	const defaultTodo = (
-		<div className={cssClass} onClick={todoSelectHandler}>
+		<div className={cssClass}>
 			<div className='mb-4'>
 				<Badge onClick={removeTodoHandler} bg='danger'>
 					Delete
@@ -50,7 +46,7 @@ function TodoList(props) {
 				<p>{description ? description : props.todo.description}</p>
 				<p> Author: {author ? author : props.todo.author}</p>
 
-				<Badge bg={complete ? 'success':'danger'}><p> Complete: </p></Badge>
+				<Badge bg='danger'>Completed</Badge>
 			</div>
 			<button type='button' className='mx-auto btn btn-success btn-sm' onClick={addTodoHandler}>
 				+Add
@@ -59,7 +55,7 @@ function TodoList(props) {
 	);
 	return (
 		<>
-			<div className='bg-light'>
+			<div>
 				{defaultTodo}
 
 				{/* <div className='m-5 bg-white px-5 py-2'>

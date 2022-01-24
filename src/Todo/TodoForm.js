@@ -52,8 +52,10 @@ function TodoForm(props) {
 		};
 		contextValue.todoUpdateDispatch(updatedTodo);
 	};
+	
 	const completeChangeHandler = (e) => {
-		const complete = e.target.value;
+		
+
 		setComplete(!complete);
 		const updatedTodo = {
 			id: props.id,
@@ -62,6 +64,7 @@ function TodoForm(props) {
 			author: author,
 			complete: complete,
 		};
+		console.log(("complete---", complete));
 		contextValue.todoUpdateDispatch(updatedTodo);
 	};
 	const confirm = contextValue.todo.status;
@@ -98,7 +101,8 @@ function TodoForm(props) {
 					className='form-check-input'
 					id='complete'
 					name='complete'
-					value={`${complete}`}
+					checked={complete}
+				
 					onChange={completeChangeHandler}
 				/>
 				<label className='form-check-label' htmlFor='exampleCheck1'>

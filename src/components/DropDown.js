@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+import { DropdownButton,Dropdown } from "react-bootstrap";
+
 
 const content = {
 	rootId: "5c91cba358267312089b8696",
@@ -95,6 +97,7 @@ const content = {
 		},
 	},
 };
+
 function DropDown() {
 	const [activeId, setActiveId] = useState("");
 
@@ -105,19 +108,25 @@ function DropDown() {
 
 	const SinglelistUi = (singleContent) => {
 		return (
-			<div key={singleContent.id}>
+			<Dropdown.Item  key={singleContent.id}>
 				{content.rootId !== singleContent.id && (
-					<div onClick={() => setActiveId(singleContent.id)}>{singleContent.data.name}</div>
+					<Dropdown.Item
+						variant='outline-secondary'
+						title='Dropdown'
+						id='input-group-dropdown-1'
+						onClick={() => setActiveId(singleContent.id)}>
+						{singleContent.data.name}
+					</Dropdown.Item>
 				)}
 
 				{singleContent.id === content.rootId || (singleContent.hasChildren && CheckShouldVisible(singleContent.id)) ? (
-					<div style={{marginLeft: 20}}>
+					<Dropdown.Item style={{marginLeft: 20}}>
 						{singleContent.children.map((singleId) => {
 							return SinglelistUi(content.items[singleId]);
 						})}
-					</div>
+					</Dropdown.Item>
 				) : null}
-			</div>
+			</Dropdown.Item>
 		);
 	};
 

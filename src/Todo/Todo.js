@@ -7,14 +7,6 @@ function MyTodo() {
 	const contextValue = useContext(TodoContext);
 
 	const addTodoButtonHandler = () => {
-		// const newTodo = {
-		// 	id: Math.random().toString(16).slice(2),
-		// 	title: "New Task tilte",
-		// 	description: "title Description",
-		// 	author: "Shakib",
-		// 	complete: false,
-		// };
-
 		contextValue.todoAddDispatch();
 	};
 	const selectedId = contextValue?.todo?.todo?.id;

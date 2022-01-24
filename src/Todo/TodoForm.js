@@ -54,7 +54,7 @@ function TodoForm(props) {
 	};
 	
 	const completeChangeHandler = (e) => {
-		
+		const complete = e.target.value;
 
 		setComplete(!complete);
 		const updatedTodo = {

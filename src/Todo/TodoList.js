@@ -41,7 +41,7 @@ function TodoList(props) {
 	const completeCSS = props.todo.complete ? props.todo.complete : complete;
 	const defaultTodo = (
 		<div className={cssClass} onClick={todoSelectHandler}>
-			<div className='mb-4'>
+			<div className='mb-4 '>
 				<img  onClick={removeTodoHandler} src='https://img.icons8.com/small/24/000000/filled-trash.png' />
 
 				<h6>{title ? title : props.todo.title}</h6>
@@ -61,14 +61,6 @@ function TodoList(props) {
 		<>
 			<div className='bg-light'>
 				{defaultTodo}
-
-				{/* <div className='m-5 bg-white px-5 py-2'>
-					<h3>New Task tile</h3>
-					<p>task description</p>
-					<p> Author: Shakib</p>
-
-					<Badge bg='success'>Completed</Badge>
-				</div> */}
 			</div>
 		</>
 	);

@@ -68,8 +68,8 @@ function TodoForm(props) {
 		contextValue.todoUpdateDispatch(updatedTodo);
 	};
 	const confirm = contextValue.todo.status;
-
-	return {confirm} ? (
+console.log("confiremm",confirm);
+	return (
 		<form className=' bg-white p-2  m-3 border'>
 			<div className='mb-3'>
 				<label htmlFor='title' className='htmlF-label'>
@@ -110,9 +110,7 @@ function TodoForm(props) {
 				</label>
 			</div>
 		</form>
-	) : (
-		""
-	);
+	) 
 }
 
 export default TodoForm;

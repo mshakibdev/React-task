@@ -7,9 +7,6 @@ function TodoList(props) {
 	const [title, setTitle] = useState("");
 
 	const [clicked, setClicked] = useState(false);
-	// const selectedTodo = localStorage.getItem("selectedTodo");
-
-	// const title = contextValue?.todo?.todo?.updatedTodo?.title;
 	const description = contextValue?.todo?.todo?.updatedTodo?.description;
 	const author = contextValue?.todo?.todo?.updatedTodo?.author;
 	const complete = contextValue?.todo?.todo?.updatedTodo?.complete;

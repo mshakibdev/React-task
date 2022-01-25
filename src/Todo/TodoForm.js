@@ -81,7 +81,7 @@ function TodoForm(props) {
 				</label>
 				<textarea
 					onChange={descriptionChangeHandler}
-					value={description}
+					value={selectedId === props.todo.id ? description:""}
 					className='form-control'
 					id='description'
 					name='description'

@@ -15,14 +15,14 @@ function MyTodo() {
 	const filterForm = contextValue.todo.allTodo.filter((todo) => todo?.id === contextValue?.todo?.todo?.id && contextValue.todo.status);
 	console.log("FF", filterForm);
 	return (
-		<div className='d-flex'>
-			<div className='container bg-light d-flex  mt-5 border  justify-content-between'>
+		<div className=''>
+			<div className='container bg-light mt-5 border '>
 				{contextValue.todo.allTodo.length > 0 ? (
-					<div className='col-md-6 d-flex flex-column  px-5 h-60  '>
-						{contextValue.todo.allTodo.map((eachTodo, index) => (
+					// <div className='col-lg-12 d-flex flex-column  px-5 h-60  '>
+						contextValue.todo.allTodo.map((eachTodo, index) => (
 							<TodoList todo={eachTodo} key={index} id={eachTodo.id} />
-						))}
-					</div>
+						))
+					// </div>
 				) : (
 					<div className='m-auto bg-white p-auto col-md-6 text-center'>
 						<button type='button' className=' btn btn-success btn-sm' onClick={addTodoButtonHandler}>
@@ -31,11 +31,11 @@ function MyTodo() {
 					</div>
 				)}
 			</div>
-			<div className='col-md-4 m-auto sticky-top'>
+			{/* <div className='col-md-4 m-auto sticky-top'>
 				{contextValue.todo.allTodo.map((eachTodo, index) => (
 					<TodoForm todo={eachTodo} key={index} id={eachTodo.id} />
 				))}
-			</div>
+			</div> */}
 		</div>
 	);
 }

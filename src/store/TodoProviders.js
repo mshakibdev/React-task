@@ -53,7 +53,7 @@ const todoReducer = (state, action) => {
 		};
 		updatedTodoList[index] = updatedTodo;
 		console.log("List", updatedTodoList);
-		const newState = {allTodo: [...updatedTodoList]};
+		const newState = {allTodo: [...updatedTodoList],todo: updatedTodo,status: action.status};
 
 		return newState;
 	}

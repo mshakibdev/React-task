@@ -1,12 +1,14 @@
 import Badge from "react-bootstrap/Badge";
 import React, {useContext, useState} from "react";
 import TodoContext from "./../store/TodoContext";
+import TodoForm from "./TodoForm";
 
 function TodoList(props) {
 	const contextValue = useContext(TodoContext);
-	const [title, setTitle] = useState("");
+	// const [title, setTitle] = useState("");
 
-	const [clicked, setClicked] = useState(false);
+	const [clicked,setClicked] = useState(false);
+	const title = contextValue?.todo?.todo?.updatedTodo?.title;
 	const description = contextValue?.todo?.todo?.updatedTodo?.description;
 	const author = contextValue?.todo?.todo?.updatedTodo?.author;
 	const complete = contextValue?.todo?.todo?.updatedTodo?.complete;
@@ -18,7 +20,7 @@ function TodoList(props) {
 		complete: props.todo.complete,
 	};
 	const addTodoHandler = () => {
-		setTitle("New Task tilte");
+		// setTitle("New Task title");
 		contextValue.todoAddDispatch(todo);
 		contextValue.todoSelectDispatch(todo);
 	};
@@ -35,17 +37,17 @@ function TodoList(props) {
 	};
 	const selectedId = contextValue?.todo?.todo?.id;
 
-	const cssClass = (selectedId ===  props.todo.id) && contextValue.todo.status ? " m-3 border bg-white p-4 border border-success " : "border bg-white p-4 m-2 ";
-	const completeCSS = complete ? complete  : props.todo.complete;
+	const cssClass =
+		selectedId === props.todo.id && contextValue.todo.status ? " m-3 border bg-white p-4 border border-success " : "border bg-white p-4 m-2 ";
+	const completeCSS = complete ? complete : props.todo.complete;
 	const defaultTodo = (
 		<div className={cssClass} onClick={todoSelectHandler}>
 			<div className='mb-4 '>
-				<img  onClick={removeTodoHandler} src='https://img.icons8.com/small/24/000000/filled-trash.png' />
+				<img onClick={removeTodoHandler} src='https://img.icons8.com/small/24/000000/filled-trash.png' />
 
 				<h6>{title ? title : props.todo.title}</h6>
 				<p>{description ? description : props.todo.description}</p>
 				<p> Author: {author ? author : props.todo.author}</p>
-
 				<Badge bg={!completeCSS ? "success" : "danger "}>
 					<p> Complete: </p>
 				</Badge>
@@ -56,12 +58,17 @@ function TodoList(props) {
 		</div>
 	);
 	return (
-		<>
-			<div className='bg-light'>
-				{defaultTodo}
+		<div className="row">
+			<div className='col-md-6 d-flex'>
+				<div className='bg-light'>{defaultTodo}</div>
 			</div>
-		</>
+			<div className='col-md-4  fixed-top ' style={{marginLeft:900 ,marginTop:100}}>
+				{selectedId === props.todo.id  ? <TodoForm todo={props.todo} id={props.todo.id} /> : ""}
+			</div>
+		</div>
 	);
 }
 
 export default TodoList;
+
+// {selectedId === props.todo.id && contextValue.todo.status ? <TodoForm todo={props.todo} id={props.todo.id} /> : ""}

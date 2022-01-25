@@ -33,8 +33,9 @@ function TodoList(props) {
 		const showForm = clicked;
 		contextValue.todoSelectDispatch(id, showForm);
 	};
+	const selectedId = contextValue?.todo?.todo?.id;
 
-	const cssClass = clicked ? " m-3 border bg-white p-4 border border-success " : "border bg-white p-4 m-2 ";
+	const cssClass = (selectedId ===  props.todo.id) && contextValue.todo.status ? " m-3 border bg-white p-4 border border-success " : "border bg-white p-4 m-2 ";
 	const completeCSS = props.todo.complete ? props.todo.complete : complete;
 	const defaultTodo = (
 		<div className={cssClass} onClick={todoSelectHandler}>
@@ -49,7 +50,7 @@ function TodoList(props) {
 					<p> Complete: </p>
 				</Badge>
 			</div>
-			<button type='button' className='mx-auto btn btn-success btn-sm' onClick={addTodoHandler}>
+			<button type='button' className='btn btn-success btn-sm' onClick={addTodoHandler}>
 				+Add
 			</button>
 		</div>

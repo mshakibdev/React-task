@@ -42,8 +42,23 @@ function MyTodo() {
 
 export default MyTodo;
 
+
+// {contextValue.todo.allTodo.map((eachTodo, index) => (
+// 	<TodoForm todo={eachTodo} key={index} id={eachTodo.id} />
+// ))}
+
+
+// ----------
 // selectedId === eachTodo.id && contextValue.todo.status ? (
 // 	<TodoForm todo={eachTodo} key={index} id={eachTodo.id} />
 // ) : (
 // 	""
 // )
+
+// -------------
+// { selectedId === eachTodo.id && contextValue.todo.status ? (
+// 	contextValue.todo.allTodo.map((eachTodo,index) => (
+// 		<TodoForm todo={ eachTodo } key={ index } id={ eachTodo.id } />
+// 	))):
+// 	""
+// }

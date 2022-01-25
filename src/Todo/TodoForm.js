@@ -67,8 +67,6 @@ function TodoForm(props) {
 		console.log(("complete---", complete));
 		contextValue.todoUpdateDispatch(updatedTodo);
 	};
-	const confirm = contextValue.todo.status;
-console.log("confiremm",confirm);
 	return (
 		<form className=' bg-white p-2  m-3 border'>
 			<div className='mb-3'>

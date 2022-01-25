@@ -11,7 +11,7 @@ function TodoForm(props) {
 	const [title, setTitle] = useState(props.todo.title);
 	const [description, setDescription] = useState(props.todo.description);
 	const [author, setAuthor] = useState(props.todo.author);
-	const [complete, setComplete] = useState(props.todo.complete);
+	const [complete, setComplete] = useState(false);
 	// const [title, setTitle] = useState("");
 
 	// contextValue.todoUpdateDispatch(updatedTodo);
@@ -53,7 +53,7 @@ function TodoForm(props) {
 		contextValue.todoUpdateDispatch(updatedTodo);
 	};
 	
-	const completeChangeHandler = (e) => {
+	const completeChangeHandler = () => {
 		
 
 		setComplete(!complete);

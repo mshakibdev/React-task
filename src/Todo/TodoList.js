@@ -46,7 +46,7 @@ function TodoList(props) {
 				<p>{description ? description : props.todo.description}</p>
 				<p> Author: {author ? author : props.todo.author}</p>
 
-				<Badge bg={completeCSS ? "success" : "danger "}>
+				<Badge bg={!completeCSS ? "success" : "danger "}>
 					<p> Complete: </p>
 				</Badge>
 			</div>

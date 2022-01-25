@@ -1,20 +1,14 @@
-import React, {useContext, useState, useEffect} from "react";
+import React, {useContext, useState} from "react";
 import TodoContext from "./../store/TodoContext";
 
 function TodoForm(props) {
 	const contextValue = useContext(TodoContext);
-	console.log("FORM--", contextValue?.todo?.todo?.id);
 	const selectedId = contextValue?.todo?.todo?.id;
-	// const selectedTodo = contextValue?.todo?.todo?.clickedTodo;
-	// const [description, setDescription] = useState(selectedTodo?.description);
-
 	const [title, setTitle] = useState(props.todo.title);
 	const [description, setDescription] = useState(props.todo.description);
 	const [author, setAuthor] = useState(props.todo.author);
 	const [complete, setComplete] = useState(false);
-	// const [title, setTitle] = useState("");
-
-	// contextValue.todoUpdateDispatch(updatedTodo);
+	
 
 	const titleChangeHandler = (e) => {
 		const title = e.target.value;
@@ -52,11 +46,10 @@ function TodoForm(props) {
 		};
 		contextValue.todoUpdateDispatch(updatedTodo);
 	};
-	
-	const completeChangeHandler = () => {
-		
 
+	const completeChangeHandler = () => {
 		setComplete(!complete);
+
 		const updatedTodo = {
 			id: props.id,
 			title: title,
@@ -64,11 +57,10 @@ function TodoForm(props) {
 			author: author,
 			complete: complete,
 		};
-		console.log(("complete---", complete));
 		contextValue.todoUpdateDispatch(updatedTodo);
 	};
 	return (
-		<form className=' bg-white p-2 d-flex flex-column m-1 border row gy-2 gx-3 align-items-start' >
+		<form className=' bg-white d-flex flex-column  border row  '>
 			<div className=' col-auto'>
 				<label htmlFor='title' className='htmlF-label fs-6'>
 					Title
@@ -81,7 +73,7 @@ function TodoForm(props) {
 				</label>
 				<textarea
 					onChange={descriptionChangeHandler}
-					value={selectedId === props.todo.id ? description:""}
+					value={selectedId === props.todo.id ? description : ""}
 					className='form-control'
 					id='description'
 					name='description'
@@ -94,20 +86,13 @@ function TodoForm(props) {
 				<input type='text' onChange={authorChangeHandler} value={author} className='form-control' id='author' name='author' />
 			</div>
 			<div className='col-auto form-check'>
-				<input
-					type='checkbox'
-					id='complete'
-					name='complete'
-					checked={complete}
-				
-					onChange={completeChangeHandler}
-				/>
-				<label className='form-check-label col-auto '  htmlFor='exampleCheck1'>
+				<input type='checkbox' id='complete' name='complete' checked={complete} onChange={completeChangeHandler} />
+				<label className='form-check-label ' htmlFor='exampleCheck1'>
 					Complete
 				</label>
 			</div>
 		</form>
-	) 
+	);
 }
 
 export default TodoForm;

@@ -60,19 +60,10 @@ const content = {
 		},
 		"5c91cbdd58267312089b872b": {
 			id: "5c91cbdd58267312089b872b",
-			hasChildren: true,
+			hasChildren: false,
 			data: {
 				name: "Javascript",
 				id: "5c91cbdd58267312089b872b",
-			},
-			children: ["5c91cbdd58267312089b872b234"],
-		},
-		"5c91cbdd58267312089b872b234": {
-			id: "5c91cbdd58267312089b872b234",
-			hasChildren: false,
-			data: {
-				name: "react js",
-				id: "5c91cbdd58267312089b872b234",
 			},
 			children: [],
 		},
@@ -148,7 +139,10 @@ function useSignUp() {
 			<div key={singleContent.id}>
 				{content.rootId !== singleContent.id && (
 					<p onClick={() => SetactiveId(singleContent.id)}>
-						{singleContent.data.name}{singleContent.hasChildren &&<img className='img-responsive' height={10} width={10} src={DropDownLogo} alt='logo' />} 
+						{singleContent.data.name}
+						{singleContent.hasChildren && (
+							<img className='img-responsive' height={10} width={10} src={DropDownLogo} alt='logo' />
+						)}
 					</p>
 				)}
 

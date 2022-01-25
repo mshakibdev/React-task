@@ -36,7 +36,7 @@ function TodoList(props) {
 	const selectedId = contextValue?.todo?.todo?.id;
 
 	const cssClass = (selectedId ===  props.todo.id) && contextValue.todo.status ? " m-3 border bg-white p-4 border border-success " : "border bg-white p-4 m-2 ";
-	const completeCSS = props.todo.complete ? props.todo.complete : complete;
+	const completeCSS = complete ? complete  : props.todo.complete;
 	const defaultTodo = (
 		<div className={cssClass} onClick={todoSelectHandler}>
 			<div className='mb-4 '>
@@ -46,7 +46,7 @@ function TodoList(props) {
 				<p>{description ? description : props.todo.description}</p>
 				<p> Author: {author ? author : props.todo.author}</p>
 
-				<Badge bg={!completeCSS ? "danger" : " success"}>
+				<Badge bg={completeCSS ? "success" : "danger "}>
 					<p> Complete: </p>
 				</Badge>
 			</div>

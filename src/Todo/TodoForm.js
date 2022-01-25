@@ -68,14 +68,14 @@ function TodoForm(props) {
 		contextValue.todoUpdateDispatch(updatedTodo);
 	};
 	return (
-		<form className=' bg-white p-2  m-3 border'>
-			<div className='mb-3'>
-				<label htmlFor='title' className='htmlF-label'>
+		<form className=' bg-white p-2 d-flex flex-column m-1 border row gy-2 gx-3 align-items-start' >
+			<div className=' col-auto'>
+				<label htmlFor='title' className='htmlF-label fs-6'>
 					Title
 				</label>
 				<input value={title} type='text' name='title' className='form-control' id='titleID' onChange={titleChangeHandler} />
 			</div>
-			<div className='mb-3'>
+			<div className='mb-1 col-auto'>
 				<label htmlFor='description' className='form-label'>
 					Description
 				</label>
@@ -87,23 +87,22 @@ function TodoForm(props) {
 					name='description'
 					rows='3'></textarea>
 			</div>
-			<div className='mb-3'>
+			<div className=' col-auto'>
 				<label htmlFor='author' className='htmlF-label'>
 					Author
 				</label>
 				<input type='text' onChange={authorChangeHandler} value={author} className='form-control' id='author' name='author' />
 			</div>
-			<div className='mb-3 form-check'>
+			<div className='col-auto form-check'>
 				<input
 					type='checkbox'
-					className='form-check-input'
 					id='complete'
 					name='complete'
 					checked={complete}
 				
 					onChange={completeChangeHandler}
 				/>
-				<label className='form-check-label' htmlFor='exampleCheck1'>
+				<label className='form-check-label col-auto '  htmlFor='exampleCheck1'>
 					Complete
 				</label>
 			</div>

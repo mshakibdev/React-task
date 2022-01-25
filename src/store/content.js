@@ -1,5 +1,3 @@
-import React, {useEffect, useState} from "react";
-
 const content = {
 	rootId: "5c91cba358267312089b8696",
 	items: {
@@ -59,19 +57,10 @@ const content = {
 		},
 		"5c91cbdd58267312089b872b": {
 			id: "5c91cbdd58267312089b872b",
-			hasChildren: true,
+			hasChildren: false,
 			data: {
 				name: "Javascript",
 				id: "5c91cbdd58267312089b872b",
-			},
-			children: ["5c91cbdd58267312089b872b234"],
-		},
-		"5c91cbdd58267312089b872b234": {
-			id: "5c91cbdd58267312089b872b234",
-			hasChildren: false,
-			data: {
-				name: "react js",
-				id: "5c91cbdd58267312089b872b234",
 			},
 			children: [],
 		},
@@ -104,70 +93,3 @@ const content = {
 		},
 	},
 };
-
-function useSignUp() {
-	const [activeId, SetactiveId] = useState("");
-
-	const [parentList, SetparentList] = useState([]);
-
-	useEffect(() => {
-		if (activeId) {
-			GetParentList(activeId, []);
-		}
-	}, [activeId]);
-
-	const GetParentList = (id, parents) => {
-		var foundAny = false;
-
-		for (const [key, value] of Object.entries(content.items)) {
-			console.log(`${key}: ${value}`);
-			if (value.hasChildren && value.children.indexOf(id) > -1) {
-				foundAny = true;
-				parents.push(value.id);
-				GetParentList(value.id, parents);
-			}
-		}
-
-		if (!foundAny) {
-			SetparentList(parents);
-		}
-	};
-
-	const CheckShouldVisible = (id) => {
-		// id ta active idr parent ki na
-		if (id === activeId) {
-			return true;
-		}
-
-		return parentList.indexOf(id) > -1;
-	};
-
-	const SinglelistUi = (singleContent) => {
-		return (
-			<div key={singleContent.id}>
-				{content.rootId !== singleContent.id && (
-					<p onClick={() => SetactiveId(singleContent.id)}>
-						{singleContent.data.name} {singleContent.hasChildren && "^"}
-					</p>
-				)}
-
-				{singleContent.id === content.rootId || (singleContent.hasChildren && CheckShouldVisible(singleContent.id)) ? (
-					<div style={{marginLeft: 20}}>
-						{singleContent.children.map((singleId) => {
-							return SinglelistUi(content.items[singleId]);
-						})}
-					</div>
-				) : null}
-			</div>
-		);
-	};
-
-	return (
-		<div>
-			{/* {JSON.stringify(parentList)}  */}
-			{SinglelistUi(content.items[content.rootId])}
-		</div>
-	);
-}
-
-export default useSignUp;

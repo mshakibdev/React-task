@@ -62,7 +62,7 @@ function TodoList(props) {
 			<div className='col-md-6 d-flex'>
 				<div className='bg-light'>{defaultTodo}</div>
 			</div>
-			<div className='col-md-4  fixed-top ' style={{marginLeft:900 ,marginTop:100}}>
+			<div className='col-md-2  fixed-top ' style={{marginLeft:1200 ,marginTop:100 ,}}>
 				{selectedId === props.todo.id  ? <TodoForm todo={props.todo} id={props.todo.id} /> : ""}
 			</div>
 		</div>

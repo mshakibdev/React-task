@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import DropDownLogo from "../assets/dropDownArrow.png";
 
 const content = {
 	rootId: "5c91cba358267312089b8696",
@@ -147,7 +148,7 @@ function useSignUp() {
 			<div key={singleContent.id}>
 				{content.rootId !== singleContent.id && (
 					<p onClick={() => SetactiveId(singleContent.id)}>
-						{singleContent.data.name} {singleContent.hasChildren && "^"}
+						{singleContent.data.name}{singleContent.hasChildren &&<img className='img-responsive' height={10} width={10} src={DropDownLogo} alt='logo' />} 
 					</p>
 				)}
 
